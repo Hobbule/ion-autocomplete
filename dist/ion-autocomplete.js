@@ -106,12 +106,14 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                     if (ionAutocompleteController.templateUrl) {
                         return $ionicModal.fromTemplateUrl(ionAutocompleteController.templateUrl, {
                             scope: scope,
-                            animation: 'slide-in-up'
+                            animation: 'slide-in-up',
+                            focusFirstInput: true
                         })
                     } else {
                         return $ionicModal.fromTemplate(template, {
                             scope: scope,
-                            animation: 'slide-in-up'
+                            animation: 'slide-in-up',
+                            focusFirstInput: true
                         })
                     }
                 }).then(function (modal) {
@@ -293,7 +295,6 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                         }
 
                         modal.show();
-                        searchInputElement[0].focus();
 
                         ionAutocompleteController.fetchSearchQuery("", true);
 
