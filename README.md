@@ -35,6 +35,7 @@ ion-autocomplete
         - [Template data](#template-data)
         - [Loading icon](#loading-icon)
         - [Manage externally](#manage-externally)
+        - [Auto Open](#auto-open)
     - [Using expressions in value keys](#using-expressions-in-value-keys)
     - [Debouncing](#debouncing)
     - [Usage inside an Ionic modal](#usage-inside-an-ionic-modal)
@@ -527,6 +528,15 @@ this.clickButton = function () {
 
 Then you will need to click on the button to open the search modal. This functionality is useful if the user wants to edit the selected item inside the 
 input field after she/he selected the item/s.
+
+### Auto Open
+
+To open the `ion-autocomplete` modal when template load. To enable this functionality 
+you need to set the `auto-open` attribute to `true`. Here an example:
+
+```javascript
+<input ion-autocomplete type="text" class="ion-autocomplete" autocomplete="off" ng-model="model" auto-open="true" />
+```
 
 ### Selected items
 
