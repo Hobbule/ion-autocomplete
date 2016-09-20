@@ -19,7 +19,8 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                 selectedItemsLabel: '@',
                 templateUrl: '@',
                 itemValueKey: '@',
-                itemViewValueKey: '@'
+                itemViewValueKey: '@',
+                autoOpen: '='
             },
             controllerAs: 'viewModel',
             controller: ['$attrs', '$timeout', '$scope', function ($attrs, $timeout, $scope) {
@@ -39,6 +40,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                     controller.templateUrl = valueOrDefault(controller.templateUrl, undefined);
                     controller.itemValueKey = valueOrDefault(controller.itemValueKey, undefined);
                     controller.itemViewValueKey = valueOrDefault(controller.itemViewValueKey, undefined);
+                    controller.autoOpen = valueOrDefault(controller.autoOpen, false);
                 });
 
                 // set the default values of the passed in attributes
@@ -413,6 +415,8 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                         return ionAutocompleteController.getItemValue(viewValue, ionAutocompleteController.itemValueKey);
                     });
 
+                    if (ionAutocompleteController.autoOpen)
+                        ionAutocompleteController.showModal();
                 });
 
             }
