@@ -534,7 +534,7 @@ input field after she/he selected the item/s.
 To open the `ion-autocomplete` modal when template load. To enable this functionality 
 you need to set the `auto-open` attribute to `true`. Here an example:
 
-```javascript
+```html
 <input ion-autocomplete type="text" class="ion-autocomplete" autocomplete="off" ng-model="model" auto-open="true" />
 ```
 
