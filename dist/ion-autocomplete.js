@@ -123,11 +123,15 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                     // compile the template
                     var searchInputElement = angular.element(modal.$el.find('input'));
 
-                    element[0].addEventListener('focus', function(event) {                        
-                        
-                        ionAutocompleteController.searchQuery = undefined;
-                        ionAutocompleteController.showModal();
-                    });
+                    // if the click is not handled externally, bind the handlers to the click and touch events of the input field
+                    if (ionAutocompleteController.manageExternally == "false") {
+
+                        element[0].addEventListener('focus', function(event) {                        
+                            
+                            ionAutocompleteController.searchQuery = undefined;
+                            ionAutocompleteController.showModal();
+                        });
+                    }
 
                     // returns the value of an item
                     ionAutocompleteController.getItemValue = function (item, key) {
@@ -345,20 +349,15 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                         });
                     };
 
-                    // if the click is not handled externally, bind the handlers to the click and touch events of the input field
-                    /*if (ionAutocompleteController.manageExternally == "false") {
-                        element.bind('touchstart', onTouchStart);
-                        element.bind('touchmove', onTouchMove);
-                        element.bind('touchend click focus', onClick);
-                    }*/
-
                     // cancel handler for the cancel button which clears the search input field model and hides the
                     // search container and the ionic backdrop and calls the cancel button clicked callback
                     ionAutocompleteController.cancelClick = function () {
+
                         ionAutocompleteController.hideModal();
 
                         // call cancel button clicked callback
                         if (angular.isDefined(attrs.cancelButtonClickedMethod)) {
+                            
                             ionAutocompleteController.cancelButtonClickedMethod({
                                 callback: {
                                     selectedItems: angular.isArray(ionAutocompleteController.selectedItems) ? ionAutocompleteController.selectedItems.slice() : ionAutocompleteController.selectedItems,
