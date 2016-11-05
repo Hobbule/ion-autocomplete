@@ -302,6 +302,12 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
 
                         modal.show();
 
+                        // hide the container if the back button is pressed
+                        scope.$deregisterBackButton = $ionicPlatform.registerBackButtonAction(function () {
+                            
+                            ionAutocompleteController.hideModal();
+                        }, 300);
+
                         ionAutocompleteController.fetchSearchQuery("", true);
 
                         // force the collection repeat to redraw itself as there were issues when the first items were added
