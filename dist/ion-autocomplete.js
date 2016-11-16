@@ -1,3 +1,13 @@
+/*
+ * ion-autocomplete 0.4.3
+ * Copyright 2016 Danny Povolotski 
+ * Copyright modifications 2016 Guy Brand 
+ * https://github.com/guylabs/ion-autocomplete
+ */
+(function() {
+
+'use strict';
+
 angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScrollDelegate', '$document', '$q', '$parse', '$interpolate', '$ionicPlatform', '$compile', '$ionicModal',
     function ($ionicScrollDelegate, $document, $q, $parse, $interpolate, $ionicPlatform, $compile, $ionicModal) {
         return {
@@ -308,7 +318,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
 
                     var searchContainerDisplayed = false;
 
-                    ionAutocompleteController.showModal = function () {
+                    ionAutocompleteController.showModal = function (mustFetch) {
 
                         if (searchContainerDisplayed) {
                             return;
@@ -322,23 +332,12 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                             ionAutocompleteController.hideModal();
                         }, 300);
 
-<<<<<<< HEAD
-                        ionAutocompleteController.fetchSearchQuery("", true);
-=======
-                        // get the compiled search field
-                        var searchInputElement = angular.element($document[0].querySelector('div.ion-autocomplete-container.' + ionAutocompleteController.randomCssClass + ' input'));
-
-                        // focus on the search input field
-                        if (searchInputElement.length > 0) {
-                            searchInputElement[0].focus();
-                            setTimeout(function () {
-                                searchInputElement[0].focus();
-                            }, 100);
-                        }
->>>>>>> refs/remotes/origin/master
+                        //Used when autoOpen option is set
+                        if (mustFetch)
+                            ionAutocompleteController.fetchSearchQuery("", true);
 
                         // force the collection repeat to redraw itself as there were issues when the first items were added
-                        //$ionicScrollDelegate.resize();
+                        $ionicScrollDelegate.resize();
 
                         searchContainerDisplayed = true;
                     };
@@ -450,10 +449,12 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                     });
 
                     if (ionAutocompleteController.autoOpen)
-                        ionAutocompleteController.showModal();
+                        ionAutocompleteController.showModal(true);
                 });
 
             }
         };
     }
 ]);
+
+})();

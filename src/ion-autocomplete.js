@@ -308,7 +308,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
 
                     var searchContainerDisplayed = false;
 
-                    ionAutocompleteController.showModal = function () {
+                    ionAutocompleteController.showModal = function (mustFetch) {
 
                         if (searchContainerDisplayed) {
                             return;
@@ -322,10 +322,12 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                             ionAutocompleteController.hideModal();
                         }, 300);
 
-                        ionAutocompleteController.fetchSearchQuery("", true);
+                        //Used when autoOpen option is set
+                        if (mustFetch)
+                            ionAutocompleteController.fetchSearchQuery("", true);
 
                         // force the collection repeat to redraw itself as there were issues when the first items were added
-                        //$ionicScrollDelegate.resize();
+                        $ionicScrollDelegate.resize();
 
                         searchContainerDisplayed = true;
                     };
@@ -437,7 +439,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                     });
 
                     if (ionAutocompleteController.autoOpen)
-                        ionAutocompleteController.showModal();
+                        ionAutocompleteController.showModal(true);
                 });
 
             }
