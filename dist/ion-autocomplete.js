@@ -320,6 +320,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                         
                         ionAutocompleteController.searchQuery = undefined;
                         modal.hide();
+                        scope.$deregisterBackButton && scope.$deregisterBackButton();
                         searchContainerDisplayed = false;
                     };
 
