@@ -308,7 +308,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
 
                     var searchContainerDisplayed = false;
 
-                    ionAutocompleteController.showModal = function (mustFetch) {
+                    ionAutocompleteController.showModal = function () {
 
                         if (searchContainerDisplayed) {
                             return;
@@ -323,8 +323,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                         }, 300);
 
                         //Used when autoOpen option is set
-                        if (mustFetch)
-                            ionAutocompleteController.fetchSearchQuery("", true);
+                        ionAutocompleteController.fetchSearchQuery("", true);
 
                         // force the collection repeat to redraw itself as there were issues when the first items were added
                         $ionicScrollDelegate.resize();
@@ -439,7 +438,7 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
                     });
 
                     if (ionAutocompleteController.autoOpen)
-                        ionAutocompleteController.showModal(true);
+                        ionAutocompleteController.showModal();
                 });
 
             }
