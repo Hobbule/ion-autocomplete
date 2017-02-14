@@ -74,7 +74,7 @@ The ion-autocomplete component has the following features:
 
 1. Use bower to install the new module:
 ```bash
-bower install ion-autocomplete --save
+bower install https://github.com/Hobbule/ion-autocomplete.git --save
 ```
 2. Import the `ion-autocomplete` javascript and css file into your HTML file:
 ```html

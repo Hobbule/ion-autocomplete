@@ -419,6 +419,8 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', ['$ionicScro
 
                         // angular takes care of cleaning all $watch's and listeners, but we still need to remove the modal
                         searchInputElement.remove();
+
+                        modal.remove();
                     });
 
                     // render the view value of the model
